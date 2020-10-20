@@ -14,14 +14,18 @@ import com.exercise.supercom.coronaapp.data.DatePeriodPoint
 import com.exercise.supercom.coronaapp.data.model.Country
 import com.exercise.supercom.coronaapp.data.model.CountryTotalCases
 import com.exercise.supercom.coronaapp.feature.RemoteRepository
+import com.exercise.supercom.coronaapp.util.DateUtils
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
+import kotlin.Comparator
 
 const val TIME_DELAY_MS: Long = 5000
 const val MAC_ADDRESS_INFECTED = "D0:03:4B:5A:E8:6E"
 
 class MainViewModel @ViewModelInject constructor(
     private val remoteRepository: RemoteRepository,
+    private val dateUtils: DateUtils,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -99,7 +103,7 @@ class MainViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                remoteRepository.getCountryAllStatusesByPeriod(selectedCountry.slug, fromDate.value!!, toDate.value!!)
+                remoteRepository.getCountryAllStatusesByPeriod(selectedCountry.slug, _fromDate.value!!, _toDate.value!!)
                     .onEach {
                         countryTotalCases.confirmed += it.confirmed
                         countryTotalCases.deaths += it.deaths
@@ -136,8 +140,8 @@ class MainViewModel @ViewModelInject constructor(
 
     fun setSelectedDate(year: Int, month: Int, dayOfMonth: Int) {
         when (selectedPeriodPoint) {
-            DatePeriodPoint.START -> _fromDate.value = "$year-${month+1}-$dayOfMonth"
-            DatePeriodPoint.END -> _toDate.value = "$year-${month+1}-$dayOfMonth"
+            DatePeriodPoint.START -> _fromDate.value = dateUtils.formatDateToApiFormat(date = Date(year - 1900, month+1, dayOfMonth))
+            DatePeriodPoint.END -> _toDate.value = dateUtils.formatDateToApiFormat(date = Date(year - 1900, month+1, dayOfMonth))
         }
     }
 

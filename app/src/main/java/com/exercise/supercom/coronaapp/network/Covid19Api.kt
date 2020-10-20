@@ -11,6 +11,6 @@ interface Covid19Api {
     suspend fun getCountries(): List<CountryResponse>
 
     @GET("country/{country}")
-    suspend fun getCountryAllStatusesByPeriod(@Path("country") country: String, @Query("fromDate") fromDate: String, @Query("toDate") toDate:String): List<CountryTotalCasesByDateResponse>
+    suspend fun getCountryAllStatusesByPeriod(@Path("country") country: String, @Query("from", encoded=true) fromDate: String, @Query("to", encoded=true) toDate:String): List<CountryTotalCasesByDateResponse>
 }
 
