@@ -53,10 +53,6 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     // Google Play Services
     implementation "com.google.android.gms:play-services-location:${versions.location}"
-    // RX Java
-    api "io.reactivex.rxjava2:rxjava:${versions.rxjava}"
-    api "io.reactivex.rxjava2:rxandroid:${versions.rxandroid}"
-    api "io.reactivex.rxjava2:rxkotlin:${versions.rxkotlin}"
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
 
@@ -68,17 +64,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}"
-
-/* ----------- Storage ---------- */
-    // Room
-    implementation "androidx.room:room-runtime:${versions.room}"
-    implementation "androidx.room:room-rxjava2:${versions.room}" // RxJava support for Room
-    implementation "androidx.room:room-ktx:${versions.room}"// Kotlin Extensions and Coroutines support for Room
-    kapt "androidx.room:room-compiler:${versions.room}"
-    // SharedPreferences
-    implementation "androidx.preference:preference:${versions.preference}"
-    // EncryptedSharedPreferences
-    implementation "androidx.security:security-crypto:${versions.crypto}"
 
 /* ----------- Network ---------- */
     // Gson
@@ -116,8 +101,3 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
-
-/*
-kapt {
-    correctErrorTypes true
-}*/
