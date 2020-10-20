@@ -6,6 +6,6 @@ used libraries/features:
 * <b>Hilt</b> - Injection
 * <b>Retrofit</b> - Network
 * <b>BLE</b> - Bluetooth
-* <b>Location<b> - Fused Location
+* <b>Location</b> - Fused Location
 
 ![img](demo.gif)
